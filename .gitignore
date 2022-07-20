@@ -1,2 +1,10 @@
 *.class
 *.log
+
+/.bsp
+/.metals
+/.idea
+/.vscode
+/.scala-build
+/project
+/target
