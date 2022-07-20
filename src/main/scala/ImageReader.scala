@@ -3,7 +3,7 @@ import java.io.File
 import java.io.IOException
 import javax.imageio.ImageIO
 
-case class RGB(r: Int, g: Int, b: Int)
+import cases.RGB
 
 extension (img: BufferedImage)
     def getPixel(x: Int, y: Int): RGB = 
@@ -14,10 +14,9 @@ extension (img: BufferedImage)
             (argb)       & 0xff
         )
 
-object ImageReader:
-    def main(args: Array[String]): Unit =
-        val file: File = new File("src/main/resources/artistic-hello-world.gif")
-        val image: BufferedImage = ImageIO.read(file)
+class ImageReader(filePath: String):
+    private[this] val file: File = new File(filePath)
+    private[this] val image: BufferedImage = ImageIO.read(file)
 
-        println(image.getPixel(3, 2))
+    def getPixel(x: Int, y: Int): RGB = image.getPixel(x, y)
 end ImageReader
