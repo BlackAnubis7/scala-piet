@@ -1,7 +1,7 @@
 //> using lib "org.scalameta::munit::0.7.29"
-import cases.RGB
+import struct.RGB
 
-class TestImageReader extends munit.FunSuite {
+class TestImageReader extends munit.FunSuite:
   test("Read pixels from PNG") {
     val reader = new ImageReader("src/test/resources/simple_matrix.png")
     for (x <- (0 until 5); y <- (0 until 5)) do
@@ -57,4 +57,3 @@ class TestImageReader extends munit.FunSuite {
       RGB(0x4a, 0x00, 0x7e)
     )
   )
-}

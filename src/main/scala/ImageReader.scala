@@ -3,7 +3,7 @@ import java.io.File
 import java.io.IOException
 import javax.imageio.ImageIO
 
-import cases.RGB
+import struct.RGB
 
 extension (img: BufferedImage)
   def getPixel(x: Int, y: Int): RGB =
@@ -15,8 +15,8 @@ extension (img: BufferedImage)
     )
 
 class ImageReader(filePath: String):
-  private[this] val file: File = new File(filePath)
-  private[this] val image: BufferedImage = ImageIO.read(file)
+  private val file: File = new File(filePath)
+  private val image: BufferedImage = ImageIO.read(file)
 
   def getPixel(x: Int, y: Int): RGB = image.getPixel(x, y)
 end ImageReader
