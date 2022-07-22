@@ -5,18 +5,27 @@ import javax.imageio.ImageIO
 
 import struct.RGB
 
-extension (img: BufferedImage)
+/**
+  * Represents an existing image file and allows reading its pixel colours
+  *
+  * @param filePath path of the image file to be read
+  */
+class ImageReader(filePath: String):
+  private val file: File = new File(filePath)
+  private val image: BufferedImage = ImageIO.read(file)
+
+  /**
+    * Returns [[struct.RGB]] representation of a pixel on given coordinates
+    *
+    * @param x pixel column index
+    * @param y pixel row index
+    * @return chosen pixel in RGB form
+    */
   def getPixel(x: Int, y: Int): RGB =
-    val argb: Int = img.getRGB(x, y)
+    val argb: Int = image.getRGB(x, y)
     RGB(
       (argb >> 16) & 0xff,
       (argb >> 8) & 0xff,
       (argb) & 0xff
     )
-
-class ImageReader(filePath: String):
-  private val file: File = new File(filePath)
-  private val image: BufferedImage = ImageIO.read(file)
-
-  def getPixel(x: Int, y: Int): RGB = image.getPixel(x, y)
 end ImageReader
