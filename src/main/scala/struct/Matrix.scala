@@ -1,3 +1,5 @@
+package struct
+
 import scala.collection.mutable.{Buffer, ListBuffer}
 
 /**
@@ -29,7 +31,7 @@ class Matrix[A](val width: Int, val height: Int):
     * @param y row index
     * @return `true` if coorginates are valid, `false` otherwise
     */
-  private def validCoords(x: Int, y: Int): Boolean =
+  def validCoords(x: Int, y: Int): Boolean =
     0 <= x && x < this.width && 0 <= y && y < this.height
   
   /**
