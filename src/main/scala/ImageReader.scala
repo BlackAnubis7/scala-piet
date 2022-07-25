@@ -14,6 +14,9 @@ class ImageReader(filePath: String):
   private val file: File = new File(filePath)
   private val image: BufferedImage = ImageIO.read(file)
 
+  def height: Int = image.getHeight()
+  def width: Int = image.getWidth()
+
   /**
     * Returns [[struct.RGB]] representation of a pixel on given coordinates
     *

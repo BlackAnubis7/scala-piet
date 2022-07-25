@@ -8,3 +8,5 @@
 /.scala-build
 /project
 /target
+
+/scala-doc

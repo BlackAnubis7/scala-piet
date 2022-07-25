@@ -2,6 +2,10 @@ package struct
 
 import scala.collection.mutable.{Buffer, ListBuffer}
 
+/** @define flatOrder elements are ordered first by rows and then by columns
+  * (first row 0 column 0, then row 0 column 1 etc.)
+  */
+
 /**
   * Represents a 2D grid of data
   *
@@ -14,7 +18,7 @@ class Matrix[A](val width: Int, val height: Int):
 
   /** 
     * Flat list of this matrix elements.
-    * `elems(1)` contains the element at row 0 column 1
+    * @note $flatOrder
     */
   private val elems: Buffer[Option[A]] = ListBuffer.fill(this.area)(None)
   
@@ -94,10 +98,10 @@ class Matrix[A](val width: Int, val height: Int):
     * Updates a row of elements at once
     *
     * @param y index of the row to be updated
-    * @param elems collection of new row elements
-    * @note If `elems` length is smaller than this matrix width, only a part of the row will be updated.
-    * If `elems` length is larger than this matrix width, whole row will be updated, and some 
-    * `elems` elements will be unused
+    * @param newElems collection of new row elements
+    * @note If `newElems` length is smaller than this matrix width, only a part of the row will be updated.
+    * If `newElems` length is larger than this matrix width, whole row will be updated, and some 
+    * `newElems` elements will be unused
     * 
     * @example {{{
     * val m: Matrix[Int] = Matrix(3, 3)
@@ -147,3 +151,12 @@ class Matrix[A](val width: Int, val height: Int):
     * @return `true` if every element is undefined, `false` otherwise
     */
   def isEmpty: Boolean = elems.forall(_.isEmpty)
+
+  /**
+    * Generates all valid coordinates of this matrix
+    *
+    * @note $flatOrder
+    * @return generated coordinates sequence
+    */
+  def coords: IndexedSeq[(Int, Int)] =
+    for i <- 0 until this.area yield unflatCoords(i)

@@ -1,3 +1,5 @@
+package config
+
 import struct.*
 import util.Flow
 
@@ -25,9 +27,14 @@ class DefaultConfig extends Config:
     * interpreter to move freely
     *
     * @param color colour to be identified
-    * @return either colour position or `Flow.FREE`
+    * @return either colour position or [[util.Flow.FREE]]
     */
   override def colorPosition(color: RGB): Either[Flow, (Int, Int)] =
     grid.coordsOf(color) match
       case Some(coords) => Right(coords)
       case None         => Left(Flow.FREE)
+
+  /**
+    * @inheritdoc
+    */
+  override def oneBlock(a: RGB, b: RGB): Boolean = false
