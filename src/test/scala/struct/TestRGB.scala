@@ -6,7 +6,7 @@ class TestRGB extends munit.FunSuite:
     val a = RGB(23, 54, 111)
     val b = RGB(23, 54, 111)
     val c = RGB(23, 55, 111)
-    val d = (23,54, 111)
+    val d = (23, 54, 111)
     assert(a == b)
     assert(a != c)
     assert(!a.equals(d))
@@ -33,4 +33,3 @@ class TestRGB extends munit.FunSuite:
     assertEquals(goal2, d)
   }
 end TestRGB
-

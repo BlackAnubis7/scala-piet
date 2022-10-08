@@ -1,8 +1,8 @@
 package util
 
 sealed trait Flow:
-  /** Common `blockId` of the codels representing this `Flow`. Has to be unique and
-    * negative, to avoid collision with IDs of existing codel blocks.
+  /** Common `blockId` of the codels representing this `Flow`. Has to be unique
+    * and negative, to avoid collision with IDs of existing codel blocks.
     */
   val negId: Int
 
@@ -14,7 +14,9 @@ object Flow:
   /** Alias for `BLOCK` */
   val BLACK: Flow = BLOCK
 
-  /** Represents a colourless area, through which the interpreter can move unobstructed */
+  /** Represents a colourless area, through which the interpreter can move
+    * unobstructed
+    */
   object FREE extends Flow:
     override val negId: Int = -1
 
