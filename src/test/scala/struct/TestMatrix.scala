@@ -15,11 +15,13 @@ class TestMatrix extends munit.FunSuite:
     assertEquals(matrix.get(6, 8), Some(43153))
     assertEquals(matrix(6, 8), Some(43153))
     assertEquals(matrix(8, 6), None)
-    intercept[java.lang.IndexOutOfBoundsException] { matrix(20, 10) }
+    // intercept[java.lang.IndexOutOfBoundsException] { matrix(20, 10) }
+    assertEquals(matrix(20, 10), None)
     intercept[java.lang.IndexOutOfBoundsException] {
       matrix.update(20, 10, 64367)
     }
-    intercept[java.lang.IndexOutOfBoundsException] { matrix(-1, -1) }
+    // intercept[java.lang.IndexOutOfBoundsException] { matrix(-1, -1) }
+    assertEquals(matrix(-1, -1), None)
     intercept[java.lang.IndexOutOfBoundsException] {
       matrix.update(-1, -1, 64367)
     }
